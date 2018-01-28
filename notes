@@ -1,0 +1,92 @@
+FT_LS
+
+Recreate the basic functionality of unix LS command.
+Flags required.
+-l handles use of long listing formant
+-R lists subdirectories recursively
+-a do not ignore entires starting with .
+-r reverse order while sorting.
+-t sort modification time, newest first.
+
+
+Recommended that -R implication is accounted for from the start.
+
+How am i going to structure my code to accurately implement LS in the most logical.
+and efficient way possible.
+
+* split ARGV if AC is < 2 run basic implementation of LS.
+else parse the argvs pasted and determine the order of how to execute the flags keep in mind -R.
+
+Functions allowed and what they do.
+
+ssize_t			write(int fd, coust void *buf, size_t count);
+writes up to count bytes from the buffer pointed buf to the file
+referred to by the file descriptor fd.
+
+DIR				*opendir(const char *name);
+opens a directory stream corresponding to the directory name,
+and returns a pointer to the directory stream.
+The stream is a positioned at the first entry in the directory.
+
+struct dirent	*readdir(DIR *dirp);
+returns a pointer to a dirent structure represeting the next
+directory entry in the directory stream pointed to by dirp.
+
+int				closedir(DIR *dirp);
+closes the directory stream associated with dirp.
+A successful call also closes the underlying file descriptor associated with dirp.
+
+int				stat(const char *pathname, struct stat *statbuf);
+returns information about a file, in the buffer pointed to by statbuf.
+No premissions are required on the file itself. 
+Permission is required on all of the directories in pathname that lead to the file.
+
+int				lstat(const char *pathname, struct stat *statbuf);
+Identical to stat(), except if the pathname is a symbolic link, then it returns info about
+the link itself, not the file that it refers to.
+
+struct passwd	*getpwuid(uid_t uid);
+returns a pointer to the struct containing the broken-out fields of the record
+in the password database that matches the user ID uid.
+
+struct group	*getgrgid(gid_t gid);
+function shall search the group database for an entry with a matching gid.
+Doesnt need to be thread-safe.
+
+ssize_t			listxattar(const char *path, char *list, size_t size);
+retrieves the list of extended attribute names associated with the given path in the filesystem.
+The retrieved lit is placed in list, a caller-alloated buffer whose size is specified in size.
+The list is sets of (null-terminated )names. The length of the attribute name list is returned.
+
+ssize_t			getxattr(const char *path, const char *name);
+retrieves the value of the extended attribute identified by name and associated
+with the given path in the filesystem. The attribute value is placed in the buffer pointed
+to by  value; size specifies the size of that buffer. The return value of the call is the number
+of bytes places in the value.
+
+time_t			time(time_t *tloc);
+returns the time as the number of seconds since the Epoch, y/m/d 00:00:00 +0000(UTC).
+
+char			*ctime(const time_t *timep);
+Take the returned value of time and shows the seconds elapsed since the Epoch.
+
+ssize_t			readlink(const char *pathname. char *buf, size_t bufsiz);
+places the contents of the symbolic link pathname in the buffer buf, which has size bufsiz.
+readlink() doesnt append a null byte to buf. it will (silently) truncate the contents
+(to a length of bufsize characters), in case the buffer is to small to hold all  of contents.
+
+void			*malloc(size_t size);
+allocates size bytes and returns a pointer to the allocated memory.
+
+void			free(void *ptr);
+frees the memory space pointed to by the ptr.
+
+void			perror(const char *s);
+produces a message on standard error describing the last error encountered during a call
+to the system or library function.
+
+char			*strerror(int errnum);
+returns a pointer to the string that describes the error code passed in the argument errnum.
+
+void			exit(int status);
+causes normal process termination and the value of status & 0377 is returned to the parent.

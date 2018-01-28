@@ -90,3 +90,32 @@ returns a pointer to the string that describes the error code passed in the argu
 
 void			exit(int status);
 causes normal process termination and the value of status & 0377 is returned to the parent.
+
+
+Implementing -R
+
+-R must Find all the subdirectories inside of the current directory once found it will continue
+down printing what is inside the subdirectory entered then continuing its search down the first
+directory until it hits a dead end and move on the to the next directory. repeating this until
+all subdirectories have been printed out.
+
+Run a recursive call that runs through all the directorys but remembering its place in the 
+each diretory might be tricky ill need to find something better then link lists to dynamically
+store all the data inside a directory and inside its subdirectories.
+
+
+**
+LS uses opendir() and readdir() to step through all the files in the directory.
+If it needs more information about one of them it calls stat().
+**
+
+first problem to tackle
+I need to find a way to read what my current directory is and i cant use getcwd().
+
+AVL trees
+B-trees
+
+Trees
+Hash Tables
+Directed Acyclic Graphs
+

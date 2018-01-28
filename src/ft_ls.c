@@ -6,12 +6,14 @@
 /*   By: evanheum <evanheum@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/27 14:23:35 by evanheum          #+#    #+#             */
-/*   Updated: 2018/01/27 14:25:39 by evanheum         ###   ########.fr       */
+/*   Updated: 2018/01/27 20:30:48 by evanheum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ft_ls.h"
 
 int			main(int ac, char** av) {
+	DIR		*dir;
+	struct	direct *dp;
 	
 }
